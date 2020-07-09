@@ -1,0 +1,11 @@
+# Modules folder
+/node_modules/
+
+# Build files
+/release/
+
+# Server config folder
+/server/config/
+
+# WebStorm .idea folder
+/.idea/

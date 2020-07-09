@@ -1,0 +1,11 @@
+{
+    "menu-players": "Игроки",
+    "menu-statistics": "Статистика",
+    "menu-maps": "Карты",
+    "menu-mods": "Моды",
+    "menu-plugins": "Плагины",
+    "menu-host": "Запуск",
+    "menu-stop": "Стоп",
+    "menu-break": "Закрыть",
+    "menu-server-folder": "Открыть папку сервера"
+}

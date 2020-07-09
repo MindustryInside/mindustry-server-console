@@ -1,0 +1,17 @@
+::-webkit-scrollbar {
+    width: 10px;
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar-track {
+    visibility: hidden;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #dc143c;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #9c102a;
+}

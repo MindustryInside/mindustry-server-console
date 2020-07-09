@@ -1,0 +1,41 @@
+#close {
+    background: #e75b5b;
+}
+
+#maximize {
+    background: #e7ba5b;
+}
+
+#minimize {
+    background: #82e75b;
+}
+
+.titlebar {
+    position: fixed;
+    width: 100%;
+    -webkit-app-region: drag;
+}
+
+.titlebar-buttons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.titlebar-button {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    margin-left: 4px;
+    margin-right: 4px;
+    cursor: pointer;
+    -webkit-app-region: no-drag;
+}
+
+.titlebar-button-hover {
+    filter: brightness(70%);
+}
+
+.titlebar-button:active {
+    filter: brightness(50%);
+}

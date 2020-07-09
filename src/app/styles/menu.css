@@ -1,0 +1,118 @@
+:root {
+    --main-menu-color: #2fa7d3;
+}
+
+.menu-title {
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.menu {
+    margin-top: 30px;
+    margin-right: 10px;
+    font-family: Mindustry, sans-serif;
+    position: fixed;
+    right: 0;
+}
+
+.menu-layout {
+    margin-bottom: 20px;
+    background: #0f1118;
+    border-bottom: solid 6px;
+    border-bottom-color: var(--main-menu-color);
+    border-radius: 10px 10px 5px 5px;
+    min-height: 100px;
+    min-width: 300px;
+}
+
+.menu-players {
+    min-height: 90px;
+}
+
+.menu-statistics {
+    min-height: 200px;
+}
+
+.menu-half-circle {
+    position: relative;
+    margin-left: 10px;
+    margin-top: 10px;
+    text-align: center;
+    float: left;
+}
+
+.menu-half-circle-overlay {
+    position: relative;
+    overflow: hidden;
+    width: 170px;
+    height: 75px;
+    margin-bottom: -35px;
+}
+
+.menu-half-circle-rotate {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    border: 35px solid #0c0c0c;
+    border-bottom-color: var(--main-menu-color);
+    border-right-color: var(--main-menu-color);
+    transform: rotate(45deg);
+}
+
+.menu-buttons-up {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-buttons-down {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    width: 90px;
+    height: 30px;
+    border-radius: 4px;
+    font-size: 19px;
+    font-family: Mindustry, sans-serif;
+}
+
+.menu-button:hover {
+    filter: brightness(70%);
+}
+
+.menu-button:active {
+    filter: brightness(50%);
+}
+
+.menu-button#menu-host {
+    background: #50f653;
+}
+
+.menu-button#menu-stop {
+    background: #d32f2f;
+}
+
+.menu-button#menu-break {
+    background: #d32f2f;
+}
+
+.menu-button#menu-server-folder {
+    background: #ffed59;
+    width: 300px;
+}

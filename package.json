@@ -1,0 +1,37 @@
+{
+    "name": "server-console",
+    "version": "1.0.0",
+    "description": "An advanced control panel for Mindustry server.",
+    "main": "./src/main-process/main.js",
+    "types": "./src/typings/server-console.d.ts",
+    "license": "GPL-3.0-or-later",
+    "private": true,
+    "author": {
+        "name": "Andrew Antsiferov",
+        "url": "https://github.com/Summet-V",
+        "email": "summet.dev@gmail.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/Summet-V/Mindustry-Server-Console"
+    },
+    "bugs": {
+        "url": "http://github.com/Summet-V/Mindustry-Server-Console/issues",
+        "email": "summet.dev@gmail.com"
+    },
+    "scripts": {
+        "build": "electron-builder --config electron-builder.json",
+        "dev": "electron . --dev",
+        "lint": "eslint .",
+        "stylelint": "stylelint ./src/app/styles"
+    },
+    "devDependencies": {
+        "electron": "^8.3.4",
+        "electron-builder": "^22.7.0",
+        "eslint": "^6.8.0",
+        "eslint-config-airbnb-base": "^14.1.0",
+        "eslint-plugin-import": "^2.20.2",
+        "stylelint": "^13.6.1",
+        "stylelint-config-standard": "^20.0.0"
+    }
+}

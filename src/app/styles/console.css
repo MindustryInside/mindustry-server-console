@@ -1,0 +1,43 @@
+.log {
+    position: absolute;
+    margin-left: 10px;
+    margin-bottom: 40px;
+    margin-top: 30px;
+    width: 70%;
+    font-family: Consolas, sans-serif;
+}
+
+.command-line {
+    padding-left: 5px;
+    padding-bottom: 5px;
+    min-width: calc(100% - 5px);
+    position: fixed;
+    bottom: 0;
+    font-size: 20px;
+    font-family: Consolas, serif;
+    background: #0c0c0c;
+}
+
+.command-line-input {
+    margin-left: 5px;
+    width: 95%;
+    font-size: 20px;
+    font-family: Consolas, serif;
+    color: white;
+    background: #0c0c0c;
+    border: none;
+    outline: none;
+}
+
+.console-settings {
+    float: right;
+    cursor: pointer;
+}
+
+.console-settings:hover {
+    filter: brightness(70%);
+}
+
+.console-settings:active {
+    filter: brightness(50%);
+}

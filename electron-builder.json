@@ -1,0 +1,23 @@
+{
+    "appId": "io.summet.server-console",
+    "productName": "Mindustry Server Console",
+    "extraResources": [
+        "server"
+    ],
+    "directories": {
+        "buildResources": "resources",
+        "output": "release"
+    },
+    "win": {
+        "target": "nsis",
+        "icon": "resources/icon.ico"
+    },
+    "nsis": {
+        "installerIcon": "resources/icon.ico",
+        "uninstallerIcon": "resources/icon-uninstall.ico",
+        "oneClick": false,
+        "perMachine": false,
+        "allowToChangeInstallationDirectory": true,
+        "runAfterFinish": false
+    }
+}
