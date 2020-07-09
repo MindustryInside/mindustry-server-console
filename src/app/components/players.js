@@ -7,7 +7,6 @@ class Players {
         this.players = new Set();
 
         this.handleEvents();
-        this.handleConnect('[crimson]Summet[orange]#4530');
     }
 
     handleEvents() {
