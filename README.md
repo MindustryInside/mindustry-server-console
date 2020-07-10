@@ -11,7 +11,8 @@ An advanced control panel for [Mindustry](https://github.com/Anuken/Mindustry) s
 
 ## Building
 
-Open a terminal in the root directory, cd to the Mindustry folder and run the following commands: <br>
+Open a terminal in the root directory, cd to the Mindustry folder and run the following commands:
+
 _Running:_ `npm run dev` <br>
 _Building:_ `npm build`
 
