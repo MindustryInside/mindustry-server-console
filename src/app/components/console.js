@@ -66,19 +66,21 @@ class Console {
 
     setupKeybinds() {
         this.addKeybind('Escape', () => this.exit());
-        this.addKeybind('F1', () => this.nextColor());
-        this.addKeybind('F2', () => this.nextLang());
-        this.addKeybind('F3', () => {
-            const currentWindow = getCurrentWindow();
-            if (currentWindow.webContents.isDevToolsOpened()) {
-                currentWindow.webContents.closeDevTools();
-            } else {
-                currentWindow.webContents.openDevTools();
-            }
-        });
+        this.addKeybind('F1', () => this.switchColor());
+        this.addKeybind('F2', () => this.switchLang());
+        this.addKeybind('F3', () => this.switchDevTools());
 
         this.addCtrlKeybind('r', () => this.restart());
         this.addCtrlKeybind('e', () => this.exit());
+    }
+
+    switchDevTools() {
+        const currentWindow = getCurrentWindow();
+        if (currentWindow.webContents.isDevToolsOpened()) {
+            currentWindow.webContents.closeDevTools();
+        } else {
+            currentWindow.webContents.openDevTools();
+        }
     }
 
     restart() {
@@ -90,7 +92,7 @@ class Console {
         this.colorSwitcher.setColor(color);
     }
 
-    nextColor() {
+    switchColor() {
         this.colorSwitcher.nextColor();
     }
 
@@ -98,7 +100,7 @@ class Console {
         this.translations.setLang(language);
     }
 
-    nextLang() {
+    switchLang() {
         this.translations.nextLang();
     }
 
