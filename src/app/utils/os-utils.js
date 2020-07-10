@@ -37,7 +37,9 @@ function cpuUsagePercent() {
 }
 
 function ramUsagePercent() {
-    return Math.round(((os.totalmem() - os.freemem()) / os.totalmem()) * 100);
+    return new Promise((resolve) => {
+        resolve(Math.round(((os.totalmem() - os.freemem()) / os.totalmem()) * 100));
+    });
 }
 
 module.exports = { cpuUsagePercent, ramUsagePercent };

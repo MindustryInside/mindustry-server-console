@@ -32,7 +32,7 @@ class Menu {
 
     async update() {
         this.setCpuUsage(await cpuUsagePercent());
-        this.setRamUsage(ramUsagePercent());
+        this.setRamUsage(await ramUsagePercent());
     }
 
     setRamUsage(value) {
