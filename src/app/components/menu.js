@@ -8,6 +8,11 @@ class Menu {
         this.ramRotateElement = document.getElementById('ram-rotate');
         this.ramValueElement = document.getElementById('ram-value');
 
+        this.playersValue = document.getElementById('menu-info-players-value');
+        this.mapsValue = document.getElementById('menu-info-maps-value');
+        this.modsValue = document.getElementById('menu-info-maps-value');
+        this.pluginsValue = document.getElementById('menu-info-plugins-value');
+
         this.hostButton = document.getElementById('menu-host');
         this.stopButton = document.getElementById('menu-stop');
         this.breakButton = document.getElementById('menu-break');
@@ -38,6 +43,38 @@ class Menu {
     setCpuUsage(value) {
         this.cpuValueElement.innerHTML = `${value}%<br>CPU`;
         this.cpuRotateElement.style.transform = `rotate(${45 + value * 1.8}deg)`;
+    }
+
+    setPlayers(value) {
+        this.playersValue.innerText = value;
+    }
+
+    getPlayers() {
+        return parseInt(this.playersValue.innerText, 10);
+    }
+
+    setMaps(value) {
+        this.mapsValue.innerText = value;
+    }
+
+    getMaps() {
+        return parseInt(this.mapsValue.innerText, 10);
+    }
+
+    setMods(value) {
+        this.modsValue.innerText = value;
+    }
+
+    getMods() {
+        return parseInt(this.modsValue.innerText, 10);
+    }
+
+    setPlugins(value) {
+        this.playersValue.innerText = value;
+    }
+
+    getPlugins() {
+        return parseInt(this.pluginsValue.innerText, 10);
     }
 }
 

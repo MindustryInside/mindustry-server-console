@@ -39,6 +39,10 @@ class Players {
 
         this.playersElement.innerHTML = allPlayers.join(' ');
     }
+
+    getPlayers() {
+        return Array.from(this.players);
+    }
 }
 
 module.exports = Players;

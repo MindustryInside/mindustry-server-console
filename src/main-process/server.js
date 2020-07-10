@@ -31,7 +31,7 @@ class Server extends EventEmitter {
         ipcMain.on('openFolder', () => this.openFolder());
 
         this.on('output', (message) => {
-            BrowserWindow.getAllWindows()[0].webContents.send('output', message);
+            this.sendToWindow('output', message);
             if (message.includes('connected')) {
                 this.emit('playerConnect', message.split(' ')[2]);
             }
@@ -42,12 +42,16 @@ class Server extends EventEmitter {
         });
 
         this.on('playerConnect', (player) => {
-            BrowserWindow.getAllWindows()[0].webContents.send('playerConnect', player);
+            this.sendToWindow('playerConnect', player);
         });
 
         this.on('playerDisconnect', (player) => {
-            BrowserWindow.getAllWindows()[0].webContents.send('playerDisconnect', player);
+            this.sendToWindow('playerDisconnect', player);
         });
+    }
+
+    sendToWindow(event, ...message) {
+        BrowserWindow.getAllWindows()[0].webContents.send(event, ...message);
     }
 
     write(text) {

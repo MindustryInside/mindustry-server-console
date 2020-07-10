@@ -22,10 +22,10 @@
     <div class="log" id="console-log"></div>
 
     <div class="menu">
-        <span class="menu-title language-depend" id="menu-players"></span>
+        <span class="menu-title language-depend" translation="menu-players"></span>
         <div class="menu-players menu-layout" id="console-players"></div>
 
-        <span class="menu-title language-depend" id="menu-statistics"></span>
+        <span class="menu-title language-depend" translation="menu-statistics"></span>
         <div class="menu-statistics menu-layout">
             <div class="menu-meters">
                 <div class="menu-cpu menu-half-circle">
@@ -42,16 +42,40 @@
                     <span id="ram-value">0%<br>RAM</span>
                 </div>
             </div>
+
+            <div class="menu-info">
+                <!-- TODO: menu-info-card is a bad name -->
+                <div class="menu-info-card">
+                    <span class="language-depend" translation="menu-players"></span>
+                    :&ensp;
+                    <span id="menu-info-players-value">0</span>
+                </div>
+                <div class="menu-info-card">
+                    <span class="language-depend" translation="menu-maps"></span>
+                    :&ensp;
+                    <span id="menu-info-maps-value">0</span>
+                </div>
+                <div class="menu-info-card">
+                    <span class="language-depend" translation="menu-mods"></span>
+                    :&ensp;
+                    <span id="menu-info-mods-value">0</span>
+                </div>
+                <div class="menu-info-card">
+                    <span class="language-depend" translation="menu-plugins"></span>
+                    :&ensp;
+                    <span id="menu-info-plugins-value">0</span>
+                </div>
+            </div>
         </div>
 
         <div class="menu-buttons">
             <div class="menu-buttons-up">
-                <button class="menu-button language-depend" id="menu-host"></button>
-                <button class="menu-button language-depend" id="menu-stop"></button>
-                <button class="menu-button language-depend" id="menu-break"></button>
+                <button class="menu-button language-depend" id="menu-host" translation="menu-host"></button>
+                <button class="menu-button language-depend" id="menu-stop" translation="menu-stop"></button>
+                <button class="menu-button language-depend" id="menu-break" translation="menu-break"></button>
             </div>
             <div class="menu-buttons-down">
-                <button class="menu-button language-depend" id="menu-server-folder"></button>
+                <button class="menu-button language-depend" id="menu-server-folder" translation="menu-server-folder"></button>
             </div>
         </div>
     </div>

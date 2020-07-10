@@ -27,8 +27,8 @@ class Translations {
 
     update() {
        this.elements.forEach((element) => {
-            // eslint-disable-next-line no-param-reassign
-            element.innerHTML = this.getValue(element.id);
+           // eslint-disable-next-line no-param-reassign
+           element.innerHTML = this.getValue(element.attributes.translation.value);
        });
 
        localStorage.setItem('menu-language', this.lang);

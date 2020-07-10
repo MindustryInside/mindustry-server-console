@@ -114,6 +114,10 @@ class Console {
         this.customCommands[command] = listener;
     }
 
+    getPlayers() {
+        return this.players.getPlayers();
+    }
+
     clearInput() {
         this.inputElement.value = '';
         this.lastCommandsState = this.lastCommands.length;
