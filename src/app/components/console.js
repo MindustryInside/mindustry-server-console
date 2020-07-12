@@ -1,4 +1,4 @@
-const { globalShortcut, getCurrentWindow } = require('electron').remote;
+const { getCurrentWindow } = require('electron').remote;
 const { ipcRenderer } = require('electron');
 
 const Titlebar = require('./titlebar');

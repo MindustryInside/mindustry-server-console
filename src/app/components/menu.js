@@ -24,10 +24,17 @@ class Menu {
 
     setup() {
         this.update();
+        this.setupInfo();
         this.hostButton.addEventListener('click', () => ipcRenderer.send('command', 'host'));
         this.stopButton.addEventListener('click', () => ipcRenderer.send('command', 'stop'));
         this.breakButton.addEventListener('click', () => ipcRenderer.send('exit'));
         this.folderButton.addEventListener('click', () => ipcRenderer.send('openFolder'));
+    }
+
+    setupInfo() {
+        // TODO: Very bad code
+        ipcRenderer.on('playerConnect', () => this.setPlayers(parseInt(this.playersValue.innerText, 10) + 1));
+        ipcRenderer.on('playerDisconnect', () => this.setPlayers(parseInt(this.playersValue.innerText, 10) - 1));
     }
 
     async update() {
@@ -49,32 +56,16 @@ class Menu {
         this.playersValue.innerText = value;
     }
 
-    getPlayers() {
-        return parseInt(this.playersValue.innerText, 10);
-    }
-
     setMaps(value) {
         this.mapsValue.innerText = value;
-    }
-
-    getMaps() {
-        return parseInt(this.mapsValue.innerText, 10);
     }
 
     setMods(value) {
         this.modsValue.innerText = value;
     }
 
-    getMods() {
-        return parseInt(this.modsValue.innerText, 10);
-    }
-
     setPlugins(value) {
         this.playersValue.innerText = value;
-    }
-
-    getPlugins() {
-        return parseInt(this.pluginsValue.innerText, 10);
     }
 }
 
