@@ -30,6 +30,7 @@ class ServerWindow {
         this.browserWindow.webContents.once('did-finish-load', () => {
             this.browserWindow.show();
             this.browserWindow.focus();
+            this.browserWindow.maximize();
         });
     }
 }
