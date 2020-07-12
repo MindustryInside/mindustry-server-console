@@ -34,9 +34,7 @@ class Server extends EventEmitter {
             this.sendToWindow('output', message);
             if (message.includes('connected')) {
                 this.emit('playerConnect', message.split(' ')[2]);
-            }
-
-            if (message.includes('disconnected')) {
+            } else if (message.includes('disconnected')) {
                 this.emit('playerDisconnect', message.split(' ')[2]);
             }
         });
