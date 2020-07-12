@@ -8,10 +8,6 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #dc143c;
+    background: var(--main-menu-color);
     cursor: pointer;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #9c102a;
 }
