@@ -1,4 +1,4 @@
 module.exports = {
-    playerConnected: (str) => / connected\./.test(str),
-    playerDisconnected: (str) => / \(closed\)/.test(str),
+    playerJoin: (str) => / connected\./.test(str),
+    playerLeave: (str) => / \(closed\)/.test(str),
 };

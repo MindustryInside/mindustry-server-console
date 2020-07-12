@@ -32,9 +32,9 @@ class Menu {
     }
 
     setupInfo() {
-        // TODO: Very bad code
-        ipcRenderer.on('playerConnect', () => this.setPlayers(parseInt(this.playersValue.innerText, 10) + 1));
-        ipcRenderer.on('playerDisconnect', () => this.setPlayers(parseInt(this.playersValue.innerText, 10) - 1));
+        // TODO: Very bad code; Rewrite
+        ipcRenderer.on('playerJoin', () => this.setPlayers(parseInt(this.playersValue.innerText, 10) + 1));
+        ipcRenderer.on('playerLeave', () => this.setPlayers(parseInt(this.playersValue.innerText, 10) - 1));
     }
 
     async update() {

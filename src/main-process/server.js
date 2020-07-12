@@ -2,7 +2,7 @@ const { BrowserWindow, shell, ipcMain } = require('electron');
 const { EventEmitter } = require('events');
 const { spawn } = require('child_process');
 const path = require('path');
-const { playerConnected, playerDisconnected } = require('../server-messages');
+const { playerJoin, playerLeave } = require('../server-messages');
 
 class Server extends EventEmitter {
     constructor(options) {
@@ -34,19 +34,19 @@ class Server extends EventEmitter {
         this.on('output', (message) => {
             this.sendToWindow('output', message);
 
-            if (playerConnected(message)) {
-                this.emit('playerConnect', message.split(' ')[2]);
-            } else if (playerDisconnected(message)) {
-                this.emit('playerDisconnect', message.split(' ')[2]);
+            if (playerJoin(message)) {
+                this.emit('playerJoin', message.split(' ')[2]);
+            } else if (playerLeave(message)) {
+                this.emit('playerLeave', message.split(' ')[2]);
             }
         });
 
-        this.on('playerConnect', (player) => {
-            this.sendToWindow('playerConnect', player);
+        this.on('playerJoin', (player) => {
+            this.sendToWindow('playerJoin', player);
         });
 
-        this.on('playerDisconnect', (player) => {
-            this.sendToWindow('playerDisconnect', player);
+        this.on('playerLeave', (player) => {
+            this.sendToWindow('playerLeave', player);
         });
     }
 

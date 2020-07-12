@@ -10,11 +10,11 @@ class Players {
     }
 
     handleEvents() {
-        ipcRenderer.on('playerConnect', (event, args) => {
+        ipcRenderer.on('playerJoin', (event, args) => {
             this.handleConnect(args);
         });
 
-        ipcRenderer.on('playerDisconnect', (event, args) => {
+        ipcRenderer.on('playerLeave', (event, args) => {
             this.handleDisconnect(args);
         });
     }
