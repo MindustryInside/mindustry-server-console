@@ -3,6 +3,7 @@ const { ipcRenderer } = require('electron');
 
 const Titlebar = require('./titlebar');
 const Players = require('./players');
+const Keybinds = require('./keybinds');
 const Translations = require('./translations');
 const ColorSwitcher = require('./color-switcher');
 const Menu = require('./menu');
@@ -12,6 +13,7 @@ class Console {
         this.titlebar = new Titlebar();
         this.menu = new Menu();
         this.players = new Players();
+        this.keybinds = new Keybinds();
         this.translations = new Translations();
         this.colorSwitcher = new ColorSwitcher();
 
@@ -68,7 +70,7 @@ class Console {
         this.addKeybind('Escape', () => this.exit());
         this.addKeybind('F1', () => this.switchColor());
         this.addKeybind('F2', () => this.switchLang());
-        this.addKeybind('F3', () => this.switchDevTools());
+        this.addKeybind('F12', () => this.switchDevTools());
 
         this.addCtrlKeybind('r', () => this.restart());
         this.addCtrlKeybind('e', () => this.exit());
@@ -88,16 +90,8 @@ class Console {
         ipcRenderer.send('restart');
     }
 
-    setColor(color) {
-        this.colorSwitcher.setColor(color);
-    }
-
     switchColor() {
         this.colorSwitcher.nextColor();
-    }
-
-    setLang(language) {
-        this.translations.setLang(language);
     }
 
     switchLang() {
@@ -105,19 +99,15 @@ class Console {
     }
 
     addKeybind(key, listener) {
-        globalShortcut.register(key, listener);
+        this.keybinds.add(key, listener);
     }
 
     addCtrlKeybind(key, listener) {
-        this.addKeybind(`CommandOrControl+${key}`, listener);
+        this.keybinds.addCtrl(key, listener);
     }
 
     addCommand(command, listener) {
         this.customCommands[command] = listener;
-    }
-
-    getPlayers() {
-        return this.players.getPlayers();
     }
 
     clearInput() {
