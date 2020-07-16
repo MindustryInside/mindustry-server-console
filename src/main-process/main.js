@@ -1,5 +1,3 @@
-require('../startup-time').set();
-
 const path = require('path');
 const { app } = require('electron');
 const ServerApplication = require('./server-application');

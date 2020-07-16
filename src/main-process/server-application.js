@@ -1,7 +1,6 @@
 const { app, ipcMain } = require('electron');
 const Server = require('./server');
 const ServerWindow = require('./server-window');
-const StartupTime = require('../startup-time');
 
 class ServerApplication {
     static open(options) {
@@ -15,7 +14,6 @@ class ServerApplication {
     }
 
     static exit() {
-        console.log(`Timestamp: ${StartupTime.getTimestamp()}s`);
         app.quit();
     }
 }
