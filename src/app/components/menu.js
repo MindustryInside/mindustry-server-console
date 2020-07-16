@@ -65,7 +65,7 @@ class Menu {
     }
 
     setPlugins(value) {
-        this.playersValue.innerText = value;
+        this.pluginsValue.innerText = value;
     }
 }
 
