@@ -3,7 +3,9 @@ const { BrowserWindow } = require('electron');
 
 class ServerWindow {
     constructor(options) {
-        this.createWindow(options);
+        this.rendererPath = options.rendererPath;
+
+        this.createWindow();
         this.handleWindowEvents();
     }
 
@@ -23,7 +25,7 @@ class ServerWindow {
             },
         });
 
-        this.browserWindow.loadFile(path.resolve('src', 'app', 'window.html'));
+        this.browserWindow.loadFile(this.rendererPath);
     }
 
     handleWindowEvents() {

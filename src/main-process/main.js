@@ -8,8 +8,10 @@ process.on('unhandledRejection', errorHandler);
 process.on('uncaughtException', errorHandler);
 
 const options = parseCommandLine(process.argv);
-options.resourcePath = path.resolve();
-options.serverPath = path.resolve(options.resourcePath, 'server');
+options.rendererPath = path.join(__dirname, '..', 'app', 'window.html');
+options.serverPath = options.dev
+    ? path.join(__dirname, '..', '..', 'server')
+    : path.join(__dirname, '..', '..', '..', 'server');
 
 app.allowRendererProcessReuse = true;
 
