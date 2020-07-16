@@ -1,4 +1,4 @@
-# Mindustry Server Cnsole
+# Mindustry Server Console
 
 [![Discord](https://img.shields.io/discord/719256219700953311)](https://discord.gg/zkmS8Y6)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](LICENSE.txt)
