@@ -21,7 +21,7 @@
     "scripts": {
         "build": "electron-builder --config electron-builder.json",
         "dev": "electron . --dev",
-        "lint": "eslint .",
+        "lint": "eslint src",
         "stylelint": "stylelint ./src/app/styles"
     },
     "devDependencies": {

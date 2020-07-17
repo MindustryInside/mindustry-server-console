@@ -9,6 +9,10 @@ An advanced control panel for [Mindustry](https://github.com/Anuken/Mindustry) s
 
 ![Preview](resources/preview.png)
 
+## Download
+
+Download in _Mindustry Server Console_ in [releases](http://github.com/Summet-V/Mindustry-Server-Console/releases) page.
+
 ## Building
 
 Open a terminal in the root directory, cd to the Mindustry folder and run the following commands:
