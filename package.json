@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "description": "An advanced control panel for Mindustry server.",
     "main": "./src/main-process/main.js",
-    "types": "./src/typings/server-console.d.ts",
     "license": "GPL-3.0-or-later",
     "private": true,
     "author": {

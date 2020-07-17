@@ -1,6 +1,7 @@
 const { BrowserWindow, shell, ipcMain } = require('electron');
 const { EventEmitter } = require('events');
 const { spawn } = require('child_process');
+const fs = require('fs');
 const path = require('path');
 const { playerJoin, playerLeave } = require('../server-messages');
 
@@ -8,6 +9,10 @@ class Server extends EventEmitter {
     constructor(options) {
         super();
         this.serverPath = options.serverPath;
+        this.configPath = path.join(this.serverPath, 'config');
+        this.mapsPath = path.join(this.configPath, 'maps');
+        this.modsPath = path.join(this.configPath, 'mods');
+
         this.loaded = false;
 
         this.start();
@@ -30,6 +35,16 @@ class Server extends EventEmitter {
         ipcMain.on('command', (event, args) => this.command(args));
         ipcMain.on('restart', () => this.restart());
         ipcMain.on('openFolder', () => this.openFolder());
+
+        ipcMain.on('maps', async (event) => {
+            // eslint-disable-next-line no-param-reassign
+            event.returnValue = await this.getMaps();
+        });
+
+        ipcMain.on('mods', async (event) => {
+            // eslint-disable-next-line no-param-reassign
+            event.returnValue = await this.getMods();
+        });
 
         this.on('output', (message) => {
             this.sendToWindow('output', message);
@@ -61,6 +76,23 @@ class Server extends EventEmitter {
 
     command(text) {
         this.write(`${text}\n`);
+    }
+
+    readConfigFolder(folder) {
+        return new Promise((resolve) => {
+            fs.readdir(folder, (err, files) => {
+                if (err) throw err;
+                resolve(files);
+            });
+        });
+    }
+
+    getMaps() {
+        return this.readConfigFolder(this.mapsPath);
+    }
+
+    getMods() {
+        return this.readConfigFolder(this.modsPath);
     }
 
     openFolder() {

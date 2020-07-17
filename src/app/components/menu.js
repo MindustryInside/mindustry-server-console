@@ -10,7 +10,7 @@ class Menu {
 
         this.playersValue = document.getElementById('menu-info-players-value');
         this.mapsValue = document.getElementById('menu-info-maps-value');
-        this.modsValue = document.getElementById('menu-info-maps-value');
+        this.modsValue = document.getElementById('menu-info-mods-value');
         this.pluginsValue = document.getElementById('menu-info-plugins-value');
 
         this.hostButton = document.getElementById('menu-host');
@@ -40,6 +40,14 @@ class Menu {
     async update() {
         this.setCpuUsage(await cpuUsagePercent());
         this.setRamUsage(await ramUsagePercent());
+
+        // Get custom maps + 12 default
+        this.setMaps(ipcRenderer.sendSync('maps').length + 12);
+
+        // TODO: Baaaaad code
+        const mods = ipcRenderer.sendSync('mods').length;
+        this.setMods(mods);
+        this.setPlugins(mods);
     }
 
     setRamUsage(value) {
