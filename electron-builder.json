@@ -5,7 +5,6 @@
         "server"
     ],
     "directories": {
-        "buildResources": "resources",
         "output": "release"
     },
     "win": {

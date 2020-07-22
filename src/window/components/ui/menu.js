@@ -32,7 +32,7 @@ class Menu {
     }
 
     setupInfo() {
-        // TODO: Very bad code; Rewrite
+        // TODO: Rewrite
         ipcRenderer.on('playerJoin', () => this.setPlayers(parseInt(this.playersValue.innerText, 10) + 1));
         ipcRenderer.on('playerLeave', () => this.setPlayers(parseInt(this.playersValue.innerText, 10) - 1));
     }
@@ -44,7 +44,7 @@ class Menu {
         // Get custom maps + 12 default
         this.setMaps(ipcRenderer.sendSync('maps').length + 12);
 
-        // TODO: Baaaaad code
+        // TODO: Plugins are not supported
         const mods = ipcRenderer.sendSync('mods').length;
         this.setMods(mods);
         this.setPlugins(mods);

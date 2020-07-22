@@ -20,7 +20,6 @@
     },
     "scripts": {
         "build": "electron-builder --config electron-builder.json",
-        "build:run": "npm run build && npm run app",
         "app": "cd release/win-unpacked && \"Mindustry Server Console.exe\"",
         "dev": "electron . --dev",
         "lint": "eslint src",

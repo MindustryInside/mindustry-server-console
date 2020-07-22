@@ -19,7 +19,7 @@ class Server extends EventEmitter {
     }
 
     start() {
-        if (this.loaded) throw new Error('Server already running!');
+        if (this.loaded) throw new Error('Server is already running!');
 
         this.handleEvents();
         this.serverProcess = spawn('java', ['-jar', 'server.jar'], { cwd: this.serverPath });
@@ -65,12 +65,12 @@ class Server extends EventEmitter {
         });
     }
 
-    sendToWindow(event, ...message) {
-        BrowserWindow.getAllWindows()[0].webContents.send(event, ...message);
+    sendToWindow(event, ...messages) {
+        BrowserWindow.getAllWindows()[0].webContents.send(event, ...messages);
     }
 
     write(text) {
-        if (!this.serverProcess) throw new Error('Server not loaded!');
+        if (!this.serverProcess) throw new Error('Server isn\'t loaded!');
         this.serverProcess.stdin.write(text);
     }
 

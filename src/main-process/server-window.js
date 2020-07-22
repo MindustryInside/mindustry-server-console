@@ -1,5 +1,5 @@
-const path = require('path');
 const { BrowserWindow } = require('electron');
+const path = require('path');
 
 class ServerWindow {
     constructor(options) {
