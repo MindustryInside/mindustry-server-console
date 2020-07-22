@@ -8,7 +8,7 @@ process.on('unhandledRejection', errorHandler);
 process.on('uncaughtException', errorHandler);
 
 const options = parseCommandLine(process.argv);
-options.rendererPath = path.join(__dirname, '..', 'app', 'window.html');
+options.rendererPath = path.join(__dirname, '..', 'window', 'window.html');
 options.serverPath = options.dev
     ? path.join(__dirname, '..', '..', 'server')
     : path.join(__dirname, '..', '..', '..', 'server');

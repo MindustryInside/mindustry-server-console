@@ -1,5 +1,5 @@
 const { ipcRenderer } = require('electron');
-const { cpuUsagePercent, ramUsagePercent } = require('../utils/os-utils');
+const { cpuUsagePercent, ramUsagePercent } = require('../../utils/os-utils');
 
 class Menu {
     constructor() {

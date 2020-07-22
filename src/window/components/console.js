@@ -1,12 +1,12 @@
 const { getCurrentWindow } = require('electron').remote;
 const { ipcRenderer } = require('electron');
 
-const Titlebar = require('./titlebar');
-const Players = require('./players');
+const Titlebar = require('./ui/titlebar');
+const Players = require('./ui/players');
 const Keybinds = require('./keybinds');
 const Translations = require('./translations');
 const ColorSwitcher = require('./color-switcher');
-const Menu = require('./menu');
+const Menu = require('./ui/menu');
 
 class Console {
     constructor() {

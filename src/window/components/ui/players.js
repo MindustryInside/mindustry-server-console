@@ -1,5 +1,5 @@
 const { ipcRenderer } = require('electron');
-const parseName = require('../utils/color-parser');
+const parseName = require('../../utils/color-parser');
 
 class Players {
     constructor() {
