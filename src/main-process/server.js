@@ -81,7 +81,7 @@ class Server extends EventEmitter {
     readConfigFolder(folder) {
         return new Promise((resolve) => {
             fs.readdir(folder, (err, files) => {
-                if (err) throw err;
+                if (err) resolve([]);
                 resolve(files);
             });
         });
