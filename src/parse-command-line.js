@@ -1,6 +1,6 @@
 /**
  * Parse command line arguments.
- * @param {[string]} argv - Raw command line arguments.
+ * @param {string[]} argv - Raw command line arguments.
  * @returns {{}} - "Table" with parsed args.
  */
 function parseCommandLine(argv) {

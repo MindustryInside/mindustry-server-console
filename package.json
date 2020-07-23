@@ -23,7 +23,8 @@
         "app": "cd release/win-unpacked && \"Mindustry Server Console.exe\"",
         "dev": "electron . --dev",
         "lint": "eslint src",
-        "stylelint": "stylelint src/window/styles"
+        "stylelint": "stylelint src/window/styles",
+        "docs": "jsdoc -r -d ./docs/ -R ./README.md ./src/"
     },
     "devDependencies": {
         "electron": "^8.3.4",
@@ -31,6 +32,7 @@
         "eslint": "^6.8.0",
         "eslint-config-airbnb-base": "^14.1.0",
         "eslint-plugin-import": "^2.20.2",
+        "jsdoc": "^3.6.5",
         "stylelint": "^13.6.1",
         "stylelint-config-standard": "^20.0.0"
     }
