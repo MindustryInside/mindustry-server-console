@@ -11,7 +11,7 @@ An advanced control panel for [Mindustry](https://github.com/Anuken/Mindustry) s
 
 ## Download
 
-Download in _Mindustry Server Console_ in [releases](https://github.com/Summet-V/Mindustry-Server-Console/releases) page.
+Download _Mindustry Server Console_ in [releases](https://github.com/Summet-V/Mindustry-Server-Console/releases) page.
 
 ## Building
 
