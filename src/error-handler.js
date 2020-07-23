@@ -1,4 +1,8 @@
-module.exports = (error) => {
+/**
+ * Handle any server-side error.
+ * @param {Error} error - Error to be handled.
+ */
+function errorHandler(error) {
     if (error.message != null) {
         console.log(error.message);
     }
@@ -8,4 +12,6 @@ module.exports = (error) => {
     }
 
     process.exit();
-};
+}
+
+module.exports = errorHandler;

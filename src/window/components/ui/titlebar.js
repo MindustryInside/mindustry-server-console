@@ -1,7 +1,13 @@
 const { getCurrentWindow } = require('electron').remote;
 const { ipcRenderer } = require('electron');
 
+/**
+ * Titlebar buttons class.
+ */
 class Titlebar {
+    /**
+     * Titlebar.
+     */
     constructor() {
         this.buttons = Array.from(document.getElementsByClassName('titlebar-button'));
 
@@ -12,6 +18,9 @@ class Titlebar {
         this.set();
     }
 
+    /**
+     * Set titlebar buttons.
+     */
     set() {
         this.buttons.forEach((button) => {
             button.addEventListener('mouseover', () => button.classList.add('titlebar-button-hover'));

@@ -8,7 +8,13 @@ const Keybinds = require('./keybinds');
 const Translations = require('./translations');
 const ColorSwitcher = require('./color-switcher');
 
+/**
+ * Main renderer side class.
+ */
 class Console {
+    /**
+     * Console.
+     */
     constructor() {
         this.titlebar = new Titlebar();
         this.menu = new Menu();
@@ -27,6 +33,9 @@ class Console {
         this.setup();
     }
 
+    /**
+     * Setup console.
+     */
     setup() {
         this.setupKeybinds();
         ipcRenderer.on('output', (event, args) => {
@@ -66,6 +75,9 @@ class Console {
         this.addCommand('exit', () => this.exit());
     }
 
+    /**
+     * Setup all keybinds for console.
+     */
     setupKeybinds() {
         this.addKeybind('Escape', () => this.exit());
         this.addKeybind('F1', () => this.switchColor());
@@ -76,6 +88,18 @@ class Console {
         this.addCtrlKeybind('e', () => this.exit());
     }
 
+
+    /**
+     * Restart the console.
+     */
+    restart() {
+        this.clearLog();
+        ipcRenderer.send('restart');
+    }
+
+    /**
+     * Switch Chrome Dev Tools; Enabled / Disabled.
+     */
     switchDevTools() {
         const currentWindow = getCurrentWindow();
         if (currentWindow.webContents.isDevToolsOpened()) {
@@ -85,49 +109,81 @@ class Console {
         }
     }
 
-    restart() {
-        this.clearLog();
-        ipcRenderer.send('restart');
-    }
-
+    /**
+     * Switch to the next console color.
+     */
     switchColor() {
         this.colorSwitcher.nextColor();
     }
 
+    /**
+     * Switch to the next console language.
+     */
     switchLang() {
         this.translations.nextLang();
     }
 
+    /**
+     * Add console keybind.
+     * @param {string} key - Keyboard key.
+     * @param {function} listener - Listener for button clicked.
+     */
     addKeybind(key, listener) {
         this.keybinds.add(key, listener);
     }
 
+    /**
+     * Add console keybind with Control (Command on Mac) key.
+     * @param {string} key - Keyboard key.
+     * @param {function} listener - Listener for button clicked.
+     */
     addCtrlKeybind(key, listener) {
         this.keybinds.addCtrl(key, listener);
     }
 
+    /**
+     * Add custom server command.
+     * @param {string} command - Command name.
+     * @param {function} listener - Listener for command.
+     */
     addCommand(command, listener) {
         this.customCommands[command] = listener;
     }
 
+    /**
+     * Clear command line text.
+     */
     clearInput() {
         this.inputElement.value = '';
         this.lastCommandsState = this.lastCommands.length;
     }
 
+    /**
+     * Clear console log.
+     */
     clearLog() {
         this.logElement.innerText = '';
     }
 
+    /**
+     * Log message to the console log.
+     * @param {string} message - Message to be sent.
+     */
     logMessage(message) {
         this.logElement.insertAdjacentHTML('beforeend', `${message}<br>`);
         this.scrollDown();
     }
 
+    /**
+     * Scroll down to console.
+     */
     scrollDown() {
         window.scrollTo(0, document.scrollingElement.scrollHeight);
     }
 
+    /**
+     * Exit the console.
+     */
     exit() {
         ipcRenderer.send('exit');
     }

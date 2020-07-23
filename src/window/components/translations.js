@@ -3,7 +3,14 @@ const fs = require('fs');
 const path = require('path');
 const Generator = require('../utils/generator');
 
+/**
+ * Class for operating with console translations.
+ */
 class Translations {
+    /**
+     * Translations.
+     * @param {string} defaultLanguage - Default console language.
+     */
     constructor(defaultLanguage = app.getLocale()) {
         this.elements = Array.from(document.getElementsByClassName('language-depend'));
         this.locales = {};
@@ -12,6 +19,9 @@ class Translations {
         this.initTranslations();
     }
 
+    /**
+     * Get all colors in {@code colors/} folder.
+     */
     initTranslations() {
         const folder = path.join(__dirname, '..', 'translations');
         const files = fs.readdirSync(folder);
@@ -25,6 +35,9 @@ class Translations {
         this.update();
     }
 
+    /**
+     * Update console translations.
+     */
     update() {
        this.elements.forEach((element) => {
            // eslint-disable-next-line no-param-reassign
@@ -34,15 +47,27 @@ class Translations {
        localStorage.setItem('menu-language', this.lang);
     }
 
+    /**
+     * Set console language.
+     * @param {string} language - Language to be set.
+     */
     setLang(language) {
         this.lang = language;
         this.update();
     }
 
+    /**
+     * Get translation of the given string.
+     * @param {string} key - String to get translation.
+     * @returns {string} - Translation.
+     */
     getValue(key) {
         return this.locales[this.lang][key];
     }
 
+    /**
+     * Switch to the next language.
+     */
     nextLang() {
         this.setLang(this.generator.next());
     }

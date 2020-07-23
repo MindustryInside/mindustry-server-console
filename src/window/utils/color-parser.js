@@ -1,22 +1,49 @@
 const colorRegex = /\[(\w)+]/g;
 const hexRegex = /[0-9A-Fa-f]{6}/;
 
+/**
+ * Check is given color in a hex format.
+ * @param {string} color - Color to be checked.
+ * @returns {boolean} - Is given in a hex format.
+ */
 function isHex(color) {
-    return color.match(hexRegex);
+    return !!color.match(hexRegex);
 }
 
+/**
+ * Check is given string have colored symbols.
+ * @param {string} name - String to be checked.
+ * @returns {boolean} - Is colored symbols here.
+ */
 function isColored(name) {
-    return name.match(colorRegex) || isHex(name);
+    return !!name.match(colorRegex) || isHex(name);
 }
 
+/**
+ * Get a html fragment of the color and string.
+ * @param {string} str - Colored string.
+ * @param {string} colorClassName - Name of the css color class.
+ * @returns {string} - Html fragment.
+ */
 function getColoredString(str, colorClassName) {
     return `<span class='mindustry-${colorClassName}'>${str}</span>`;
 }
 
+/**
+ * Get a html fragment of the hex color and string.
+ * @param {string} str - Colored string.
+ * @param {string} hexColor - Color in hex format.
+ * @returns {string} - Html fragment.
+ */
 function getHexColoredString(str, hexColor) {
     return `<span style="color: ${hexColor.startsWith('#') ? hexColor : `#${hexColor}`}">${str}</span>`;
 }
 
+/**
+ * Check color in the string.
+ * @param {string} str - String to be checked.
+ * @returns {{str: string, color: string}|string} - Object with string and color.
+ */
 function checkColor(str) {
     for (let i = 1; i < str.length; i++) {
         if (str.charAt(i) === ']') {
@@ -27,6 +54,11 @@ function checkColor(str) {
     return str;
 }
 
+/**
+ * Parse a raw player name with colors.
+ * @param {string} rawName - Name to be parsed.
+ * @returns {string} - Html fragment.
+ */
 function parseName(rawName) {
     const name = rawName.trim();
 

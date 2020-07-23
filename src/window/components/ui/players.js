@@ -1,7 +1,13 @@
 const { ipcRenderer } = require('electron');
 const parseName = require('../../utils/color-parser');
 
+/**
+ * Class for operating with players bar.
+ */
 class Players {
+    /**
+     * Players.
+     */
     constructor() {
         this.playersElement = document.getElementById('console-players');
         this.players = new Set();
@@ -9,39 +15,49 @@ class Players {
         this.handleEvents();
     }
 
+    /**
+     * Handle player join and player leave events.
+     */
     handleEvents() {
         ipcRenderer.on('playerJoin', (event, args) => {
-            this.handleConnect(args);
+            this.handleJoin(args);
         });
 
         ipcRenderer.on('playerLeave', (event, args) => {
-            this.handleDisconnect(args);
+            this.handleLeave(args);
         });
     }
 
-    handleConnect(playerName) {
+    /**
+     * Handle player join.
+     * @param {string} playerName - Name of joined player.
+     */
+    handleJoin(playerName) {
         const parsedName = parseName(playerName);
         this.players.add(parsedName);
 
         this.updatePlayers();
     }
 
-    handleDisconnect(playerName) {
+    /**
+     * Handle player leave.
+     * @param {string} playerName - Name of leaved player.
+     */
+    handleLeave(playerName) {
         const parsedName = parseName(playerName);
         this.players.delete(parsedName);
 
         this.updatePlayers();
     }
 
+    /**
+     * Sync array with players bar.
+     */
     updatePlayers() {
         const allPlayers = [];
         this.players.forEach((player) => allPlayers.push(player));
 
         this.playersElement.innerHTML = allPlayers.join(' ');
-    }
-
-    getPlayers() {
-        return Array.from(this.players);
     }
 }
 

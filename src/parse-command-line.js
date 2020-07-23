@@ -1,4 +1,9 @@
-module.exports = (argv) => {
+/**
+ * Parse command line arguments.
+ * @param {[string]} argv - Raw command line arguments.
+ * @returns {{}} - "Table" with parsed args.
+ */
+function parseCommandLine(argv) {
     const result = {};
 
     const args = argv.slice(2);
@@ -14,4 +19,6 @@ module.exports = (argv) => {
     }
 
     return result;
-};
+}
+
+module.exports = parseCommandLine;

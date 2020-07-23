@@ -1,5 +1,9 @@
 const os = require('os');
 
+/**
+ * Get a CPU usage percent.
+ * @returns {Promise<number>} - Percent.
+ */
 function cpuUsagePercent() {
     return new Promise((resolve) => {
         const cpus = os.cpus();
@@ -36,6 +40,10 @@ function cpuUsagePercent() {
     });
 }
 
+/**
+ * Get a RAM usage percent.
+ * @returns {Promise<number>} - Percent.
+ */
 function ramUsagePercent() {
     return new Promise((resolve) => {
         resolve(Math.round(((os.totalmem() - os.freemem()) / os.totalmem()) * 100));

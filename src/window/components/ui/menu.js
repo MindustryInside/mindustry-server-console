@@ -1,7 +1,13 @@
 const { ipcRenderer } = require('electron');
 const { cpuUsagePercent, ramUsagePercent } = require('../../utils/os-utils');
 
+/**
+ * Menu / Statistics class.
+ */
 class Menu {
+    /**
+     * Menu.
+     */
     constructor() {
         this.cpuRotateElement = document.getElementById('cpu-rotate');
         this.cpuValueElement = document.getElementById('cpu-value');
@@ -22,6 +28,9 @@ class Menu {
         setInterval(() => this.update(), 1000);
     }
 
+    /**
+     * Setup menu.
+     */
     setup() {
         this.update();
         this.setupInfo();
@@ -31,12 +40,19 @@ class Menu {
         this.folderButton.addEventListener('click', () => ipcRenderer.send('openFolder'));
     }
 
+    /**
+     * Setup statistics info.
+     */
     setupInfo() {
         // TODO: Rewrite
         ipcRenderer.on('playerJoin', () => this.setPlayers(parseInt(this.playersValue.innerText, 10) + 1));
         ipcRenderer.on('playerLeave', () => this.setPlayers(parseInt(this.playersValue.innerText, 10) - 1));
     }
 
+    /**
+     * Async menu update.
+     * @returns {Promise<void>} - Promise returned from async function call.
+     */
     async update() {
         this.setCpuUsage(await cpuUsagePercent());
         this.setRamUsage(await ramUsagePercent());
@@ -50,30 +66,54 @@ class Menu {
         this.setPlugins(mods);
     }
 
+    /**
+     * Set RAM bar usage percent.
+     * @param {number} value - Percent.
+     */
     setRamUsage(value) {
         this.ramValueElement.innerHTML = `${value}%<br>RAM`;
         this.ramRotateElement.style.transform = `rotate(${45 + value * 1.8}deg)`;
     }
 
+    /**
+     * Set CPU bar usage percent.
+     * @param {number} value - Percent.
+     */
     setCpuUsage(value) {
         this.cpuValueElement.innerHTML = `${value}%<br>CPU`;
         this.cpuRotateElement.style.transform = `rotate(${45 + value * 1.8}deg)`;
     }
 
+    /**
+     * Set players value.
+     * @param {number} value - Number of players.
+     */
     setPlayers(value) {
-        this.playersValue.innerText = value;
+        this.playersValue.innerText = value.toString();
     }
 
+    /**
+     * Set maps value.
+     * @param {number} value - Number of maps.
+     */
     setMaps(value) {
-        this.mapsValue.innerText = value;
+        this.mapsValue.innerText = value.toString();
     }
 
+    /**
+     * Set mods value.
+     * @param {number} value - Number of mods.
+     */
     setMods(value) {
-        this.modsValue.innerText = value;
+        this.modsValue.innerText = value.toString();
     }
 
+    /**
+     * Set plugins value.
+     * @param {number} value - Number of plugins.
+     */
     setPlugins(value) {
-        this.pluginsValue.innerText = value;
+        this.pluginsValue.innerText = value.toString();
     }
 }
 

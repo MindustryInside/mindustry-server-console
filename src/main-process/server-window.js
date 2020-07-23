@@ -1,7 +1,14 @@
 const { BrowserWindow } = require('electron');
 const path = require('path');
 
+/**
+ * Class for creating server window.
+ */
 class ServerWindow {
+    /**
+     * Server window.
+     * @param options
+     */
     constructor(options) {
         this.rendererPath = options.rendererPath;
 
@@ -9,6 +16,9 @@ class ServerWindow {
         this.handleWindowEvents();
     }
 
+    /**
+     * Create a {@code BrowserWindow} instance.
+     */
     createWindow() {
         this.browserWindow = new BrowserWindow({
             height: 583,
@@ -28,6 +38,9 @@ class ServerWindow {
         this.browserWindow.loadFile(this.rendererPath);
     }
 
+    /**
+     * Handle window events.
+     */
     handleWindowEvents() {
         this.browserWindow.webContents.once('did-finish-load', () => {
             this.browserWindow.show();

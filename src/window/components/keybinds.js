@@ -1,4 +1,10 @@
+/**
+ * Class for operating with console keybinds.
+ */
 class Keybinds {
+    /**
+     * Keybinds.
+     */
     constructor() {
         this.binds = {};
         this.ctrlBinds = {};
@@ -14,10 +20,20 @@ class Keybinds {
          });
     }
 
+    /**
+     * Add keybind.
+     * @param {string} key - Keyboard key.
+     * @param {function} listener - Listener for button clicked.
+     */
     add(key, listener) {
         this.binds[key] = listener;
     }
 
+    /**
+     * Add keybind with Control (Command on Mac) key.
+     * @param {string} key - Keyboard key.
+     * @param {function} listener - Listener for button clicked.
+     */
     addCtrl(key, listener) {
         this.ctrlBinds[key] = listener;
     }
