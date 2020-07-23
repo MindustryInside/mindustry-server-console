@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: window/window.js</title>
+    <title>JSDoc: Source: main-process/utils/error-handler.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: window/window.js</h1>
+    <h1 class="page-title">Source: main-process/utils/error-handler.js</h1>
 
     
 
@@ -26,19 +26,23 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Console = require('./components/console/console');
+            <pre class="prettyprint source linenums"><code>/**
+ * Handle any server-side error.
+ * @param {Error} error - Error to be handled.
+ */
+function errorHandler(error) {
+    if (error.message != null) {
+        console.log(error.message);
+    }
 
-// Main point to the renderer process.
-document.addEventListener('DOMContentLoaded', () => {
-    // Load custom HTML elements.
-    require('./custom-elements/gear-icon/gear-icon');
+    if (error.stack != null) {
+        console.log(error.stack);
+    }
 
-    /**
-     * Class for operating with renderer side.
-     * @type {Console}
-     */
-    window.ConsoleControl = new Console();
-});
+    process.exit();
+}
+
+module.exports = errorHandler;
 </code></pre>
         </article>
     </section>

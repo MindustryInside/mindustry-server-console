@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: window/window.js</title>
+    <title>JSDoc: Source: window/components/titlebar/titlebar.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: window/window.js</h1>
+    <h1 class="page-title">Source: window/components/titlebar/titlebar.js</h1>
 
     
 
@@ -26,19 +26,53 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Console = require('./components/console/console');
+            <pre class="prettyprint source linenums"><code>const { getCurrentWindow } = require('electron').remote;
+const { ipcRenderer } = require('electron');
 
-// Main point to the renderer process.
-document.addEventListener('DOMContentLoaded', () => {
-    // Load custom HTML elements.
-    require('./custom-elements/gear-icon/gear-icon');
+/**
+ * Titlebar buttons class.
+ */
+class Titlebar {
+    /**
+     * Titlebar.
+     */
+    constructor() {
+        this.buttons = Array.from(document.getElementsByClassName('titlebar-button'));
+
+        this.closeBtn = document.getElementById('close');
+        this.maximizeBtn = document.getElementById('maximize');
+        this.minimizeBtn = document.getElementById('minimize');
+
+        this.set();
+    }
 
     /**
-     * Class for operating with renderer side.
-     * @type {Console}
+     * Set titlebar buttons.
      */
-    window.ConsoleControl = new Console();
-});
+    set() {
+        this.buttons.forEach((button) => {
+            button.addEventListener('mouseover', () => button.classList.add('titlebar-button-hover'));
+            button.addEventListener('mouseleave', () => button.classList.remove('titlebar-button-hover'));
+            button.addEventListener('click', () => button.classList.remove('titlebar-button-hover'));
+        });
+
+        this.closeBtn.addEventListener('click', () => ipcRenderer.send('exit'));
+
+        this.maximizeBtn.addEventListener('click', () => {
+            if (getCurrentWindow().isMaximized()) {
+                getCurrentWindow().unmaximize();
+            } else if (getCurrentWindow().isFullScreen()) {
+                getCurrentWindow().setFullScreen(false);
+            } else {
+                getCurrentWindow().maximize();
+            }
+        });
+
+        this.minimizeBtn.addEventListener('click', () => getCurrentWindow().minimize());
+    }
+}
+
+module.exports = Titlebar;
 </code></pre>
         </article>
     </section>

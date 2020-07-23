@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: window/window.js</title>
+    <title>JSDoc: Source: main-process/utils/parse-command-line.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: window/window.js</h1>
+    <h1 class="page-title">Source: main-process/utils/parse-command-line.js</h1>
 
     
 
@@ -26,19 +26,30 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Console = require('./components/console/console');
+            <pre class="prettyprint source linenums"><code>/**
+ * Parse command line arguments.
+ * @param {string[]} argv - Raw command line arguments.
+ * @returns {{}} - "Table" with parsed args.
+ */
+function parseCommandLine(argv) {
+    const result = {};
 
-// Main point to the renderer process.
-document.addEventListener('DOMContentLoaded', () => {
-    // Load custom HTML elements.
-    require('./custom-elements/gear-icon/gear-icon');
+    const args = argv.slice(2);
+    for (let i = 0; i &lt; args.length; i++) {
+        const value = args[i];
+        if (value.startsWith('--')) {
+            if (args[i + 1] &amp;&amp; !args[i + 1].startsWith('--')) {
+                result[value.split('').splice(2).join('')] = args[i + 1];
+            } else {
+                result[value.split('').splice(2).join('')] = true;
+            }
+        }
+    }
 
-    /**
-     * Class for operating with renderer side.
-     * @type {Console}
-     */
-    window.ConsoleControl = new Console();
-});
+    return result;
+}
+
+module.exports = parseCommandLine;
 </code></pre>
         </article>
     </section>

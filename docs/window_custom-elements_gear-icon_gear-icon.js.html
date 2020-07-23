@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: window/window.js</title>
+    <title>JSDoc: Source: window/custom-elements/gear-icon/gear-icon.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: window/window.js</h1>
+    <h1 class="page-title">Source: window/custom-elements/gear-icon/gear-icon.js</h1>
 
     
 
@@ -26,19 +26,49 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Console = require('./components/console/console');
-
-// Main point to the renderer process.
-document.addEventListener('DOMContentLoaded', () => {
-    // Load custom HTML elements.
-    require('./custom-elements/gear-icon/gear-icon');
-
+            <pre class="prettyprint source linenums"><code>/**
+ * Custom gear HTML element.
+ * @example
+ * // Gear size is 100 px.
+ * &lt;gear-icon size="20px">&lt;/gear-icon>
+ */
+class GearIcon extends HTMLElement {
     /**
-     * Class for operating with renderer side.
-     * @type {Console}
+     * Gear icon.
      */
-    window.ConsoleControl = new Console();
-});
+    constructor() {
+        super();
+
+        const shadow = this.attachShadow({ mode: 'closed' });
+
+        const wrapper = document.createElement('div');
+        wrapper.setAttribute('class', 'gear-icon');
+
+        const center = document.createElement('div');
+        center.setAttribute('class', 'gear-icon-center');
+
+        wrapper.appendChild(center);
+
+        for (let i = 0; i &lt; 4; i++) {
+            const currentGearTooth = document.createElement('div');
+
+            currentGearTooth.setAttribute('class', 'gear-icon-tooth');
+            wrapper.appendChild(currentGearTooth);
+        }
+
+        const style = document.createElement('link');
+        style.setAttribute('rel', 'stylesheet');
+        style.setAttribute('href', './custom-elements/gear-icon/gear-icon.css');
+
+        shadow.appendChild(wrapper);
+        shadow.appendChild(style);
+
+        const size = this.getAttribute('size') || '0px';
+        wrapper.setAttribute('style', `--icon-size: ${size};`);
+    }
+}
+
+customElements.define('gear-icon', GearIcon);
 </code></pre>
         </article>
     </section>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: window/components/menu/menu.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: window/components/menu/menu.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { ipcRenderer } = require('electron');
+const { cpuUsagePercent, ramUsagePercent } = require('../../utils/os-utils');
+
+/**
+ * Menu / Statistics class.
+ */
+class Menu {
+    /**
+     * Menu.
+     */
+    constructor() {
+        this.cpuRotateElement = document.getElementById('cpu-rotate');
+        this.cpuValueElement = document.getElementById('cpu-value');
+        this.ramRotateElement = document.getElementById('ram-rotate');
+        this.ramValueElement = document.getElementById('ram-value');
+
+        this.playersValue = document.getElementById('menu-info-players-value');
+        this.mapsValue = document.getElementById('menu-info-maps-value');
+        this.modsValue = document.getElementById('menu-info-mods-value');
+        this.pluginsValue = document.getElementById('menu-info-plugins-value');
+
+        this.hostButton = document.getElementById('menu-host');
+        this.stopButton = document.getElementById('menu-stop');
+        this.breakButton = document.getElementById('menu-break');
+        this.folderButton = document.getElementById('menu-server-folder');
+
+        this.setup();
+        setInterval(() => this.update(), 1000);
+    }
+
+    /**
+     * Setup menu.
+     */
+    setup() {
+        this.update();
+        this.setupInfo();
+        this.hostButton.addEventListener('click', () => ipcRenderer.send('command', 'host'));
+        this.stopButton.addEventListener('click', () => ipcRenderer.send('command', 'stop'));
+        this.breakButton.addEventListener('click', () => ipcRenderer.send('exit'));
+        this.folderButton.addEventListener('click', () => ipcRenderer.send('openFolder'));
+    }
+
+    /**
+     * Setup statistics info.
+     */
+    setupInfo() {
+        // TODO: Rewrite
+        ipcRenderer.on('playerJoin', () => this.setPlayers(parseInt(this.playersValue.innerText, 10) + 1));
+        ipcRenderer.on('playerLeave', () => this.setPlayers(parseInt(this.playersValue.innerText, 10) - 1));
+    }
+
+    /**
+     * Async menu update.
+     * @returns {Promise&lt;void>} - Promise returned from async function call.
+     */
+    async update() {
+        this.setCpuUsage(await cpuUsagePercent());
+        this.setRamUsage(await ramUsagePercent());
+
+        // Get custom maps + 12 default
+        this.setMaps(ipcRenderer.sendSync('maps').length + 12);
+
+        // TODO: Plugins are not supported
+        const mods = ipcRenderer.sendSync('mods').length;
+        this.setMods(mods);
+        this.setPlugins(mods);
+    }
+
+    /**
+     * Set RAM bar usage percent.
+     * @param {number} value - Percent.
+     */
+    setRamUsage(value) {
+        this.ramValueElement.innerHTML = `${value}%&lt;br>RAM`;
+        this.ramRotateElement.style.transform = `rotate(${45 + value * 1.8}deg)`;
+    }
+
+    /**
+     * Set CPU bar usage percent.
+     * @param {number} value - Percent.
+     */
+    setCpuUsage(value) {
+        this.cpuValueElement.innerHTML = `${value}%&lt;br>CPU`;
+        this.cpuRotateElement.style.transform = `rotate(${45 + value * 1.8}deg)`;
+    }
+
+    /**
+     * Set players value.
+     * @param {number} value - Number of players.
+     */
+    setPlayers(value) {
+        this.playersValue.innerText = value.toString();
+    }
+
+    /**
+     * Set maps value.
+     * @param {number} value - Number of maps.
+     */
+    setMaps(value) {
+        this.mapsValue.innerText = value.toString();
+    }
+
+    /**
+     * Set mods value.
+     * @param {number} value - Number of mods.
+     */
+    setMods(value) {
+        this.modsValue.innerText = value.toString();
+    }
+
+    /**
+     * Set plugins value.
+     * @param {number} value - Number of plugins.
+     */
+    setPlugins(value) {
+        this.pluginsValue.innerText = value.toString();
+    }
+}
+
+module.exports = Menu;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ColorSwitcher.html">ColorSwitcher</a></li><li><a href="Console.html">Console</a></li><li><a href="GearIcon.html">GearIcon</a></li><li><a href="Generator.html">Generator</a></li><li><a href="Keybinds.html">Keybinds</a></li><li><a href="Menu.html">Menu</a></li><li><a href="Players.html">Players</a></li><li><a href="Server.html">Server</a></li><li><a href="ServerApplication.html">ServerApplication</a></li><li><a href="ServerWindow.html">ServerWindow</a></li><li><a href="Titlebar.html">Titlebar</a></li><li><a href="Translations.html">Translations</a></li></ul><h3>Global</h3><ul><li><a href="global.html#checkColor">checkColor</a></li><li><a href="global.html#cpuUsagePercent">cpuUsagePercent</a></li><li><a href="global.html#errorHandler">errorHandler</a></li><li><a href="global.html#getColoredString">getColoredString</a></li><li><a href="global.html#getHexColoredString">getHexColoredString</a></li><li><a href="global.html#isColored">isColored</a></li><li><a href="global.html#isHex">isHex</a></li><li><a href="global.html#parseCommandLine">parseCommandLine</a></li><li><a href="global.html#parseName">parseName</a></li><li><a href="global.html#ramUsagePercent">ramUsagePercent</a></li><li><a href="global.html#serverMessages">serverMessages</a></li><li><a href="global.html#showJavaError">showJavaError</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Fri Jul 24 2020 01:57:30 GMT+0300 (Москва, стандартное время)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: window/window.js</title>
+    <title>JSDoc: Source: window/components/players/players.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: window/window.js</h1>
+    <h1 class="page-title">Source: window/components/players/players.js</h1>
 
     
 
@@ -26,19 +26,70 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Console = require('./components/console/console');
+            <pre class="prettyprint source linenums"><code>const { ipcRenderer } = require('electron');
+const parseName = require('../../utils/color-parser');
 
-// Main point to the renderer process.
-document.addEventListener('DOMContentLoaded', () => {
-    // Load custom HTML elements.
-    require('./custom-elements/gear-icon/gear-icon');
+/**
+ * Class for operating with players bar.
+ */
+class Players {
+    /**
+     * Players.
+     */
+    constructor() {
+        this.playersElement = document.getElementById('console-players');
+        this.players = new Set();
+
+        this.handleEvents();
+    }
 
     /**
-     * Class for operating with renderer side.
-     * @type {Console}
+     * Handle player join and player leave events.
      */
-    window.ConsoleControl = new Console();
-});
+    handleEvents() {
+        ipcRenderer.on('playerJoin', (event, args) => {
+            this.handleJoin(args);
+        });
+
+        ipcRenderer.on('playerLeave', (event, args) => {
+            this.handleLeave(args);
+        });
+    }
+
+    /**
+     * Handle player join.
+     * @param {string} playerName - Name of joined player.
+     */
+    handleJoin(playerName) {
+        const parsedName = parseName(playerName);
+        this.players.add(parsedName);
+
+        this.updatePlayers();
+    }
+
+    /**
+     * Handle player leave.
+     * @param {string} playerName - Name of leaved player.
+     */
+    handleLeave(playerName) {
+        const parsedName = parseName(playerName);
+        this.players.delete(parsedName);
+
+        this.updatePlayers();
+    }
+
+    /**
+     * Sync array with players bar.
+     */
+    updatePlayers() {
+        const allPlayers = [];
+        this.players.forEach((player) => allPlayers.push(player));
+
+        this.playersElement.innerHTML = allPlayers.join(' ');
+    }
+}
+
+module.exports = Players;
 </code></pre>
         </article>
     </section>
