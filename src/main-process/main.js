@@ -1,8 +1,8 @@
 const { app, dialog } = require('electron');
 const path = require('path');
 const ServerApplication = require('./server-application');
-const errorHandler = require('../error-handler');
-const parseCommandLine = require('../parse-command-line');
+const errorHandler = require('./utils/error-handler');
+const parseCommandLine = require('./utils/parse-command-line');
 
 // Handle every error.
 process.on('unhandledRejection', errorHandler);
@@ -31,7 +31,7 @@ app.once('ready', () => {
 });
 
 /**
- * Throw an error on the absence Java.
+ * Throw an error on the absence of Java.
  * @returns {Promise<Electron.MessageBoxReturnValue>} - Promise with button clicked.
  */
 function showJavaError() {

@@ -3,7 +3,7 @@ const { EventEmitter } = require('events');
 const { spawn } = require('child_process');
 const fs = require('fs');
 const path = require('path');
-const { playerJoin, playerLeave } = require('../server-messages');
+const { playerJoin, playerLeave } = require('./utils/server-messages');
 
 /**
  * Class for operating with Mindustry server.

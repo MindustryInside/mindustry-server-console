@@ -26,10 +26,6 @@
     min-width: 300px;
 }
 
-.menu-players {
-    min-height: 90px;
-}
-
 .menu-statistics {
     min-height: 200px;
     display: flex;

@@ -1,0 +1,25 @@
+@import "components/titlebar/titlebar.css";
+@import "components/console/console.css";
+@import "components/menu/menu.css";
+@import "styles/scrollbar.css";
+@import "styles/mindustry-colors.css";
+
+@font-face {
+    font-family: Mindustry;
+    src: url('fonts/fontello.ttf');
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    background: #0c0c0c;
+    color: white;
+}

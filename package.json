@@ -21,6 +21,7 @@
     "scripts": {
         "build": "electron-builder --config electron-builder.json",
         "app": "cd release/win-unpacked && \"Mindustry Server Console.exe\"",
+        "buildrun": "npm run build && npm run app",
         "dev": "electron . --dev",
         "lint": "eslint src",
         "stylelint": "stylelint src/window/styles",

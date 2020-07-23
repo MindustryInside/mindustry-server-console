@@ -1,5 +1,6 @@
-const Console = require('./components/console');
+const Console = require('./components/console/console');
 
+// Main point to the renderer process.
 document.addEventListener('DOMContentLoaded', () => {
     /**
      * Class for operating with renderer side.

@@ -1,12 +1,12 @@
 const { getCurrentWindow } = require('electron').remote;
 const { ipcRenderer } = require('electron');
 
-const Titlebar = require('./ui/titlebar');
-const Menu = require('./ui/menu');
-const Players = require('./ui/players');
-const Keybinds = require('./keybinds');
-const Translations = require('./translations');
-const ColorSwitcher = require('./color-switcher');
+const Titlebar = require('../titlebar/titlebar');
+const Menu = require('../menu/menu');
+const Players = require('../players/players');
+const Keybinds = require('../keybinds');
+const Translations = require('../translations');
+const ColorSwitcher = require('../color-switcher');
 
 /**
  * Main renderer side class.
