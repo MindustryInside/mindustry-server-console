@@ -23,7 +23,7 @@
         "app": "cd release/win-unpacked && \"Mindustry Server Console.exe\"",
         "dev": "electron . --dev",
         "lint": "eslint src",
-        "stylelint": "stylelint ./src/app/styles"
+        "stylelint": "stylelint src/window/styles"
     },
     "devDependencies": {
         "electron": "^8.3.4",

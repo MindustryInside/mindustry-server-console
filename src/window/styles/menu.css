@@ -16,11 +16,6 @@
     right: 0;
 }
 
-.menu-statistics {
-    display: flex;
-    justify-content: space-between;
-}
-
 .menu-layout {
     margin-bottom: 20px;
     background: #0f1118;
@@ -37,6 +32,8 @@
 
 .menu-statistics {
     min-height: 200px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .menu-half-circle {
