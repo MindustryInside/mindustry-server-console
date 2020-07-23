@@ -1,0 +1,42 @@
+.gear-icon {
+    --icon-size: 0;
+
+    position: relative;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    background: #fff;
+    border-radius: 50%;
+}
+
+.gear-icon-center {
+    position: absolute;
+    z-index: 10;
+    top: calc(var(--icon-size) / 4);
+    left: calc(var(--icon-size) / 4);
+    width: calc(var(--icon-size) / 2);
+    height: calc(var(--icon-size) / 2);
+    background: #000;
+    border-radius: 50%;
+}
+
+.gear-icon-tooth {
+    position: absolute;
+    z-index: 1;
+    top: calc(var(--icon-size) / -8);
+    left: calc(var(--icon-size) / 2.666666666666);
+    width: calc(var(--icon-size) / 4.44444444444);
+    height: calc(var(--icon-size) + var(--icon-size) / 4);
+    background: #fff;
+}
+
+.gear-icon-tooth:nth-child(2) {
+    transform: rotate(45deg);
+}
+
+.gear-icon-tooth:nth-child(3) {
+    transform: rotate(90deg);
+}
+
+.gear-icon-tooth:nth-child(4) {
+    transform: rotate(135deg);
+}
