@@ -1,6 +1,5 @@
 const { getCurrentWindow } = require('electron').remote;
 const { ipcRenderer } = require('electron');
-
 const Titlebar = require('../titlebar/titlebar');
 const Menu = require('../menu/menu');
 const Players = require('../players/players');

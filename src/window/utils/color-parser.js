@@ -1,4 +1,13 @@
+/**
+ * Regular expression for checking colored strings.
+ * @type {RegExp}
+ */
 const colorRegex = /\[(\w)+]/g;
+
+/**
+ * Regular expression for checking HEX colors.
+ * @type {RegExp}
+ */
 const hexRegex = /[0-9A-Fa-f]{6}/;
 
 /**
@@ -67,8 +76,11 @@ function parseName(rawName) {
     }
 
     const coloredStrings = [];
+    let coloring = false;
+
     for (let i = 0; i < name.length; i++) {
         if (name.charAt(i) === '[' && i !== name.length - 1 && name.charAt(i + 1) !== '[' && (i === 0 || name.charAt(i - 1) !== '[')) {
+            coloring = true;
             const next = name.substring(i);
             const result = checkColor(next);
             for (let j = 0; j < result.str.length; j++) {
@@ -82,6 +94,9 @@ function parseName(rawName) {
                 ? getHexColoredString(result.str, result.color)
                 : getColoredString(result.str, result.color);
             coloredStrings.push(coloredString);
+        } else if (!coloring) {
+            const whiteString = getColoredString(name.charAt(i), 'white');
+            coloredStrings.push(whiteString);
         }
     }
     return `<div class="colored">${coloredStrings.join('')}</div>`;
