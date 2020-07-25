@@ -118,6 +118,14 @@
     color: #b03060ff;
 }
 
-.mindustry-I {
+.mindustry-info {
     color: #2fa7d3;
+}
+
+.mindustry-warning {
+    color: #ffe046;
+}
+
+.mindustry-error {
+    color: #fa8072ff;
 }

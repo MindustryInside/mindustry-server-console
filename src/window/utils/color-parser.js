@@ -1,4 +1,8 @@
 /**
+ * @typedef {{string: string, color: string}|string} ColoredString - String with special color.
+ */
+
+/**
  * Regular expression for checking colored strings.
  * @type {RegExp}
  */
@@ -51,16 +55,32 @@ function getHexColoredString(str, hexColor) {
 /**
  * Check color in the string.
  * @param {string} str - String to be checked.
- * @returns {{str: string, color: string}|string} - Object with string and color.
+ * @returns {ColoredString} - Object with string and color.
  */
 function checkColor(str) {
     for (let i = 1; i < str.length; i++) {
         if (str.charAt(i) === ']') {
-            const color = str.substring(1, i);
-            return { str: str.substring(i + 1), color };
+            const string = str.substring(i + 1);
+            let color = str.substring(1, i);
+
+            // Parse log colors.
+            switch (color) {
+                case 'I':
+                    color = 'info';
+                    break;
+                case 'E':
+                    color = 'error';
+                    break;
+                case 'W':
+                    color = 'warning';
+                    break;
+                default:
+                    break;
+            }
+            return { string, color };
         }
     }
-    return str;
+    return { string: str, color: 'white' };
 }
 
 /**
@@ -82,17 +102,18 @@ function parseName(rawName) {
         if (name.charAt(i) === '[' && i !== name.length - 1 && name.charAt(i + 1) !== '[' && (i === 0 || name.charAt(i - 1) !== '[')) {
             coloring = true;
             const next = name.substring(i);
-            const result = checkColor(next);
-            for (let j = 0; j < result.str.length; j++) {
-                if (result.str.split('')[j] === '[') {
-                    result.str = result.str.split('').slice(0, j).join('');
+            // eslint-disable-next-line prefer-const
+            let { string, color } = checkColor(next);
+            for (let j = 0; j < string.length; j++) {
+                if (string.split('')[j] === '[') {
+                    string = string.split('').slice(0, j).join('');
                     break;
                 }
             }
-            result.str.replace(colorRegex, '');
-            const coloredString = isHex(result.color)
-                ? getHexColoredString(result.str, result.color)
-                : getColoredString(result.str, result.color);
+            string.replace(colorRegex, '');
+            const coloredString = isHex(color)
+                ? getHexColoredString(string, color)
+                : getColoredString(string, color);
             coloredStrings.push(coloredString);
         } else if (!coloring) {
             const whiteString = getColoredString(name.charAt(i), 'white');

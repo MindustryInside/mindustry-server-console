@@ -1,6 +1,6 @@
 {
     "name": "server-console",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "An advanced control panel for Mindustry server.",
     "main": "./src/main-process/main.js",
     "license": "GPL-3.0-or-later",

@@ -33,7 +33,7 @@ function cpuUsagePercent() {
 
             const totalDiff = endTotal - startTotal;
             const idleDiff = endIdle - startIdle;
-            const percent = Math.round((100 - 100 * (idleDiff / totalDiff)) * 10) / 10;
+            const percent = Math.round(1000 - 1000 * (idleDiff / totalDiff)) / 10;
 
             resolve(percent);
         }, 1000);
