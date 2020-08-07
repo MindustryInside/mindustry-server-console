@@ -7,11 +7,11 @@ An advanced control panel for [Mindustry](https://github.com/Anuken/Mindustry) s
 
 ## Preview
 
-![Preview](https://github.com/Summet-V/Mindustry-Server-Console/raw/master/resources/preview.png)
+![Preview](https://github.com/summetdev/Mindustry-Server-Console/raw/master/resources/preview.png)
 
 ## Download
 
-Download _Mindustry Server Console_ in [releases](https://github.com/Summet-V/Mindustry-Server-Console/releases) page.
+Download Mindustry Server Console in [releases](https://github.com/summetdev/Mindustry-Server-Console/releases) page.
 
 ## Building
 

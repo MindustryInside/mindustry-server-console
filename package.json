@@ -7,15 +7,15 @@
     "private": true,
     "author": {
         "name": "Andrew Antsiferov",
-        "url": "https://github.com/Summet-V",
+        "url": "https://github.com/summetdev",
         "email": "summet.dev@gmail.com"
     },
     "repository": {
         "type": "git",
-        "url": "http://github.com/Summet-V/Mindustry-Server-Console"
+        "url": "http://github.com/summetdev/Mindustry-Server-Console"
     },
     "bugs": {
-        "url": "http://github.com/Summet-V/Mindustry-Server-Console/issues",
+        "url": "http://github.com/summetdev/Mindustry-Server-Console/issues",
         "email": "summet.dev@gmail.com"
     },
     "scripts": {
