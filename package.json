@@ -28,7 +28,7 @@
         "docs": "jsdoc -r -d ./docs/ -R ./README.md ./src/"
     },
     "devDependencies": {
-        "electron": "^8.3.4",
+        "electron": "^8.5.1",
         "electron-builder": "^22.7.0",
         "eslint": "^6.8.0",
         "eslint-config-airbnb-base": "^14.1.0",
